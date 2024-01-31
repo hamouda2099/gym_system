@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:gym_system/logic/services/date_picker.dart';
 
 import '../../config/constants.dart';
 import '../../logic/ui_logic/create_subscription_logic.dart';
@@ -89,7 +90,13 @@ class CreateSubscription extends StatelessWidget {
                             hint: "Start Date".tr(),
                             width: screenWidth / 5,
                             icon: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                pickDate(context).then((value) {
+                                  if (value != null) {
+                                    logic.startDateCnt.text = value;
+                                  }
+                                });
+                              },
                               child: const Icon(
                                 Icons.calendar_month,
                                 color: Colors.black,
@@ -101,7 +108,13 @@ class CreateSubscription extends StatelessWidget {
                             hint: "End Date".tr(),
                             width: screenWidth / 5,
                             icon: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                pickDate(context).then((value) {
+                                  if (value != null) {
+                                    logic.endDateCnt.text = value;
+                                  }
+                                });
+                              },
                               child: const Icon(
                                 Icons.calendar_month,
                                 color: Colors.black,
@@ -194,90 +207,6 @@ class CreateSubscription extends StatelessWidget {
                             ),
                           )
                         ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Offer Members".tr(),
-                            style: const TextStyle(
-                              color: Colors.orange,
-                            ),
-                          ),
-                          InkWell(
-                              onTap: () {},
-                              child: const Icon(
-                                Icons.add_box_outlined,
-                                color: Colors.orange,
-                              ))
-                        ],
-                      ),
-                      const Divider(
-                        color: Colors.orange,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        width: screenWidth / 1.5,
-                        height: screenHeight / 4,
-                        child: ListView.builder(itemBuilder: (context, index) {
-                          return Container(
-                            width: screenWidth / 1.5,
-                            padding: const EdgeInsets.all(5),
-                            margin: const EdgeInsets.only(bottom: 10),
-                            color: Colors.grey.withOpacity(0.1),
-                            child: const Row(
-                              children: [
-                                Expanded(
-                                  flex: 4,
-                                  child: Text(
-                                    "name",
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 3,
-                                  child: Text(
-                                    "010423356134",
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 3,
-                                  child: Text(
-                                    "2024-02-01",
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 3,
-                                  child: Text(
-                                    "2024-02-28",
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    "100 LE",
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                ),
-                                Spacer(),
-                                Expanded(
-                                    flex: 1,
-                                    child: Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
-                                    )),
-                              ],
-                            ),
-                          );
-                        }),
                       ),
                       const SizedBox(
                         height: 30,

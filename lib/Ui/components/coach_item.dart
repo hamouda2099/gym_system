@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:gym_system/dialogs/basic_dialogs.dart';
 import 'package:gym_system/logic/services/date_formatter.dart';
 import 'package:gym_system/models/coaches_model.dart';
 
@@ -66,7 +67,10 @@ class CoachItem extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             width: 50,
-            child: const InkWell(
+            child: InkWell(
+              onTap: () {
+                Dialogs().loadingDialog(context);
+              },
               child: Icon(
                 Icons.delete,
                 color: Colors.red,

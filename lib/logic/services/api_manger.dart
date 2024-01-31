@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../../config/constants.dart';
 import '../../models/coaches_model.dart';
+import '../../models/subscription_model.dart';
 import '../../models/subscriptions_model.dart';
 
 class ApiManger {
@@ -186,6 +187,32 @@ class ApiManger {
     return await sendPostRequest(_subscriptions, parameters);
   }
 
+  static Future<dynamic> updateSubscription({
+    String? id,
+    String? fullName,
+    String? phone,
+    String? startDate,
+    String? endDate,
+    String? price,
+    String? paid,
+  }) async {
+    Map<String, dynamic> parameters = {
+      "name": fullName,
+      "phone": phone,
+      "startDate": startDate,
+      "endDate": endDate,
+      "price": price,
+      "paid": paid,
+    };
+    return await sendPutRequest('$_subscriptions/$id', parameters);
+  }
+
+  static Future<dynamic> deleteSubscription({
+    String? id,
+  }) async {
+    return jsonDecode((await sendDeleteRequest('$_subscriptions/$id')).body);
+  }
+
   static Future<SubscriptionsModel> getSubscriptions({
     String page = '1',
     String limit = '10',
@@ -198,5 +225,12 @@ class ApiManger {
     };
     return SubscriptionsModel.fromJson(json.decode(
         (await sendGetRequest(_subscriptions + toQuery(parameters))).body));
+  }
+
+  static Future<SubscriptionModel> getSubscriptionById({
+    String? id,
+  }) async {
+    return SubscriptionModel.fromJson(
+        json.decode((await sendGetRequest('$_subscriptions/$id')).body));
   }
 }

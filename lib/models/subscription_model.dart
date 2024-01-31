@@ -38,18 +38,18 @@ class SubscriptionModel {
 }
 
 class Subscription {
-  int? id;
+  num? id;
   String? name;
   String? phone;
   String? status;
-  DateTime? startDate;
-  DateTime? endDate;
-  int? price;
-  int? paid;
-  int? offer;
-  int? coachId;
+  String? startDate;
+  String? endDate;
+  num? price;
+  num? paid;
+  num? offer;
+  num? coachId;
   String? createdAt;
-  dynamic deletedAt;
+  String? deletedAt;
   Coach? coach;
 
   Subscription({
@@ -73,11 +73,8 @@ class Subscription {
         name: json["name"],
         phone: json["phone"],
         status: json["status"],
-        startDate: json["start_date"] == null
-            ? null
-            : DateTime.parse(json["start_date"]),
-        endDate:
-            json["end_date"] == null ? null : DateTime.parse(json["end_date"]),
+        startDate: json["start_date"],
+        endDate: json["end_date"],
         price: json["price"],
         paid: json["paid"],
         offer: json["offer"],
@@ -92,10 +89,8 @@ class Subscription {
         "name": name,
         "phone": phone,
         "status": status,
-        "start_date":
-            "${startDate!.year.toString().padLeft(4, '0')}-${startDate!.month.toString().padLeft(2, '0')}-${startDate!.day.toString().padLeft(2, '0')}",
-        "end_date":
-            "${endDate!.year.toString().padLeft(4, '0')}-${endDate!.month.toString().padLeft(2, '0')}-${endDate!.day.toString().padLeft(2, '0')}",
+        "start_date": startDate,
+        "end_date": endDate,
         "price": price,
         "paid": paid,
         "offer": offer,

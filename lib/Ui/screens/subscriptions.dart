@@ -196,6 +196,7 @@ class Subscriptions extends ConsumerWidget {
                   ),
                   Consumer(
                     builder: (context, ref, child) {
+                      ref.watch(listReBuilder);
                       return Expanded(
                           child: SubscriptionsPagination(
                         query: search.text,

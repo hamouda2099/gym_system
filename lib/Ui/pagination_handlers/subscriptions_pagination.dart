@@ -63,6 +63,7 @@ class SubscriptionsPagination extends ConsumerWidget {
                                               0,
                                           itemBuilder: (context, index) {
                                             return SubscriptionItem(
+                                              provider: listViewRebuilding,
                                               subscribtion: snapshot
                                                   .data!.subscribtions![index],
                                             );

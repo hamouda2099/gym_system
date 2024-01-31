@@ -73,6 +73,26 @@ class SideMenu extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
           ),
+          InkWell(
+            onTap: (){
+              if(localLanguage == 'en'){
+                localLanguage = 'ar';
+                context.setLocale(const Locale('ar'));
+              }else {
+                localLanguage = 'en';
+                context.setLocale(const Locale('en'));
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "English".tr(),
+                style: TextStyle(
+                    color: Colors.grey.withOpacity(0.4),
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
         ],
       ),
     );
